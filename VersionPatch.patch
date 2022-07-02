@@ -1,0 +1,25 @@
+From 937678fc4a29b4d8848f7f44722c094432c35955 Mon Sep 17 00:00:00 2001
+From: FurryAcetylCoA <1109673069@qq.com>
+Date: Sat, 2 Jul 2022 21:43:44 +0800
+Subject: [PATCH] Change version
+
+---
+ configure.ac | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/configure.ac b/configure.ac
+index 4629d2d..ddea76d 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -2,7 +2,7 @@ dnl Process this with autoconf to create configure
+ 
+ AC_PREREQ([2.71])
+ 
+-AC_INIT([libffi],[3.4.2],[http://github.com/libffi/libffi/issues])
++AC_INIT([libffi],[3.4.3.99],[http://github.com/libffi/libffi/issues])
+ AC_CONFIG_HEADERS([fficonfig.h])
+ 
+ AC_CANONICAL_TARGET
+-- 
+2.34.1
+

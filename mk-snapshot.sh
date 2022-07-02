@@ -3,14 +3,14 @@
 # Create a snapshot of the libffi repository from github, as a workaround for
 # the lack of recent releases of libffi (see https://github.com/libffi/libffi/issues/296)
 
-GVERS=3.99999 # see configure.ac / AC_INIT
+GVERS=3.4.3.99 # see configure.ac / AC_INIT
 
 # make a temporary directory and perform operations in there.
 TMPD=$(mktemp -d)
 TDIR=$(pwd)
 
 # clone the repository (shallow is sufficient)
-git -C ${TMPD} clone --depth 1 https://github.com/bgamari/libffi.git
+git -C ${TMPD} clone --depth 1 https://github.com/libffi/libffi.git
 REPO="${TMPD}/libffi"
 
 # record the revision and create a copy of only the files
@@ -18,6 +18,9 @@ REPO="${TMPD}/libffi"
 GHASH=$(git -C ${REPO} rev-parse --short HEAD)
 GDATE=$(git -C ${REPO} log -1 --pretty=format:%cd --date=format:%Y%m%d)
 SUFFIX="${GVERS}+git${GDATE}+${GHASH}"
+
+# patch the version
+git -C ${REPO} apply  ${TDIR}/VersionPatch.patch
 
 # run autogen and generate distribution tarball.
 (cd "$REPO" && ./autogen.sh && ./configure && make dist)
